@@ -1,0 +1,11 @@
+--- ProfitLib/ProfitLib.py~	2014-10-18 21:27:56.000000000 -0700
++++ ProfitLib/ProfitLib.py	2014-10-18 21:28:11.462471487 -0700
+@@ -27,7 +27,7 @@
+ import jsonrpc
+ import sys
+ from decimal import *
+-sys.path.insert(0, './PyCryptsy/')
++sys.path.insert(0, './ProfitLib/PyCryptsy/')
+ from PyCryptsy import PyCryptsy
+ 
+ class ProfitLib:
