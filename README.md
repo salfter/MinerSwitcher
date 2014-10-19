@@ -28,6 +28,9 @@ git submodule update --init --recursive
 patch -p0 <ProfitLib-path-fix.patch
 ```
 
+For python-nmap and python-pushover, you can either use your distro's
+provided packages (if available) or you can use pip to fetch and install.
+
 The ProfitLib configuration needs to be copied from
 ./ProfitLib/profit_config_example.json to ./profit_config.json and edited
 appropriately.  In addition to Cryptsy API credentials, you will need RPC
