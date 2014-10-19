@@ -9,11 +9,13 @@ Setup
 This project has nested submodules, which you can pull through with the
 following:
 
-```git submodule init
+```
+git submodule init  
 git submodule update
 cd ProfitLib
 git submodule init
-git submodule update```
+git submodule update
+```
 
 Dependencies
 ============
