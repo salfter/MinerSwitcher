@@ -20,8 +20,11 @@ git submodule update
 Dependencies
 ------------
 
-ProfitLib (included as submodule):
+ProfitLib (included as a submodule):
   https://github.com/salfter/ProfitLib
+
+pycgminer (included as a submodule):
+  https://github.com/tsileo/pycgminer
 
 PyCryptsy (included as a submodule of ProfitLib):
   https://github.com/salfter/PyCryptsy    

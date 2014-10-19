@@ -1,3 +1,6 @@
 [submodule "ProfitLib"]
 	path = ProfitLib
 	url = https://github.com/salfter/ProfitLib
+[submodule "pycgminer"]
+	path = pycgminer
+	url = https://github.com/tsileo/pycgminer
