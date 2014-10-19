@@ -33,12 +33,11 @@ import json
 from decimal import *
 import operator
 import nmap
-import pprint
 
 # see if a port is open
 
-def PortIsOpen(hostname, port):
-  scan=nmap.PortScanner().scan(host, str(port))["scan"]
+def PortIsOpen(host, port):
+  scan=nmap.PortScanner().scan(hosts=host, ports=str(port), arguments="")["scan"]
   open=False
   for i, ipaddr in enumerate(scan):
     if (scan[ipaddr]["tcp"][port]["state"]=="open"):
@@ -48,7 +47,16 @@ def PortIsOpen(hostname, port):
 # verify that at least one pool configured for a coin is up
 
 def CheckPools(coin, pools):
-  pass
+  open=False
+  
+  # iterate through available pools
+  
+  for i, pool in enumerate(pools):
+    if (pools[pool]["coin"]==coin):
+      if (PortIsOpen(pools[pool]["hostname"], pools[pool]["port"])):
+        open=True
+  
+  return open
 
 # reconfigure a cgminer/bfgminer instance to mine on another pool
 # (by default, remove all other pools)
@@ -122,7 +130,10 @@ def SwitchCoin(coin, algo, miners, pools):
 
         print now()+": switching "+miner+" to "+pool[0]
 
-        SwitchPool(miner, rpc_port, pool_url, pool_worker, pool_worker_pass, clear)
+        try:
+          SwitchPool(miner, rpc_port, pool_url, pool_worker, pool_worker_pass, clear)
+        except:
+          print now()+": unable to switch "+miner+" to "+coin+"...miner down?"
 
 # get current date & time
 def now():
@@ -147,6 +158,8 @@ def MakeTable(algo, profit):
 
   for i, r in enumerate(sorted_result):
     print r[0]+" "+str(r[1])
+    
+  return sorted_result
 
 
 def main(argc, argv):
@@ -178,25 +191,40 @@ def main(argc, argv):
     
     for i, algo in enumerate(algos):
   
-      # find most profitable coin
-    
-      max=0
-      coin_max=""
-      for j, coin in enumerate(profit):
-        if (profit[coin]["algo"]==algo and profit[coin]["daily_revenue_btc"]>max):
-          max=profit[coin]["daily_revenue_btc"]
-          coin_max=coin
+      ## find most profitable coin
+      #   
+      #max=0
+      #coin_max=""
+      #for j, coin in enumerate(profit):
+      #  if (profit[coin]["algo"]==algo and profit[coin]["daily_revenue_btc"]>max):
+      #    max=profit[coin]["daily_revenue_btc"]
+      #    coin_max=coin
 
-      # print profitability table
+      # print profitability table, and find the most profitable coin
 
-      MakeTable(algo, profit)
+      tbl=MakeTable(algo, profit)
     
-      # do we need to switch?
-    
-      if (last_coin[algo]!=coin_max):
-        SwitchCoin(coin_max, algo, miners, pools)
-        
-      last_coin[algo]=coin_max
+      # pick the most profitable for which the pools are up and running
+
+      running=False
+      for j, coin in enumerate(tbl):
+        print now()+": checking "+coin[0]+" pools"
+        if (CheckPools(coin[0], pools) and running==False):
+          running=True
+          coin_max=coin[0]
+          break
+        else:
+          print now()+": all "+coin[0]+" pools down...skipping!"
+      if (running==False):
+        print now()+": ALL POOLS DOWN!!!"
+      else:
+          
+        # do we need to switch?
+      
+        if (last_coin[algo]!=coin_max):
+          SwitchCoin(coin_max, algo, miners, pools)
+          
+        last_coin[algo]=coin_max
     
     # wait 30 minutes
 

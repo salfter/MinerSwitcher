@@ -1,6 +1,8 @@
 {
   "Eligius" : {
-    "url" : "stratum+tcp://stratum.mining.eligius.st:3334",
+    "protocol" : "stratum+tcp",
+    "hostname" : "stratum.mining.eligius.st",
+    "port" : 3334,
     "worker_prefix" : "1mineSNbjsnJRzXpbW3xUsvtSUjhPRsNy",
     "worker_separator" : "_",
     "worker_password" : "x",
@@ -9,7 +11,9 @@
     "algo" : "sha256"
   },
   "BTC Guild" : {
-    "url" : "stratum+tcp://stratum.btcguild.com:3333",
+    "protocol" : "stratum+tcp",
+    "hostname" : "stratum.btcguild.com",
+    "port" : 3333,
     "worker_prefix" : "salfter",
     "worker_separator" : "_",
     "worker_password" : "x",
@@ -18,7 +22,9 @@
     "algo" : "sha256"
   },
   "Mining Pool Co. UNO" : {
-    "url" : "stratum+tcp://de1.miningpool.co:10701",
+    "protocol" : "stratum+tcp",
+    "hostname" : "de1.miningpool.co",
+    "port" : 10701,
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "worker_password" : "x",
@@ -27,7 +33,9 @@
     "algo" : "sha256"
   },
   "iSpace ZET" : {
-    "url" : "stratum+tcp://ispace.co.uk:3343",
+    "protocol" : "stratum+tcp",
+    "hostname" : "ispace.co.uk",
+    "port" : 3343,
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "worker_password" : "x",
@@ -36,7 +44,9 @@
     "algo" : "sha256"
   },
   "WeMineLTC" : {
-    "url" : "stratum+tcp://gridseed.wemineltc.com:3333",
+    "protocol" : "stratum+tcp",
+    "hostname" : "gridseed.wemineltc.com",
+    "port" : 3333,
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "worker_password" : "x",
@@ -45,7 +55,9 @@
     "algo" : "scrypt"
   },
   "WeMineFTC" : {
-    "url" : "stratum+tcp://stratum.wemineftc.com:4444",
+    "protocol" : "stratum+tcp",
+    "hostname" : "stratum.wemineftc.com",
+    "port" : 4444,
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "worker_password" : "x",
@@ -54,7 +66,9 @@
     "algo" : "scrypt"
   },
   "AnonMining" : {
-    "url" : "stratum+tcp://www.anonmining.com:3338",
+    "protocol" : "stratum+tcp",
+    "hostname" : "www.anonmining.com",
+    "port" : 3338,
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "worker_password" : "x",
@@ -63,7 +77,9 @@
     "algo" : "scrypt"
   },
   "Scott's Bitgem Pool" : {
-    "url" : "stratum+tcp://bitgem.alfter.us:3333",
+    "protocol" : "stratum+tcp",
+    "hostname" : "bitgem.alfter.us",
+    "port" : 3333,
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "worker_password" : "x",
@@ -72,7 +88,9 @@
     "algo" : "scrypt"
   },
   "HashFaster 42" : {
-    "url" : "stratum+tcp://stratum-east.42.hashfaster.com:4003",
+    "protocol" : "stratum+tcp",
+    "hostname" : "stratum-east.42.hashfaster.com",
+    "port" : 4003,
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "worker_password" : "x",

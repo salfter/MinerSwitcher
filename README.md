@@ -9,6 +9,11 @@ algorithm-agnostic: you can have a mix of sha256 miners, scrypt miners,
 etc., and each will be switched to whatever is most profitable for it to
 mine.
 
+Sometimes pools go down without much notice.  Before switching coins,
+MinerSwitcher verifies that at least one of your configured pools is still
+up.  If it isn't, it prints a warning and moves on to the next most
+profitable pool.
+
 Setup
 -----
 
@@ -27,6 +32,13 @@ access to coin daemons for the coins you want to switch between.
 
 The pool configuration needs to be copied from ./pool_config_example.json to
 ./pool_config.json and edited with the credentials for the pools you use.
+The priority field determines the order in which pools are fed to the miner;
+the pool with the highest priority is added last, so the miner switches to
+it.  In the example configuration, for instance, Eligius is given a priority
+of 10 and BTC Guild is given a priority of 0.  MinerSwitch will remove
+whatever other pools are configured, send the configuration for BTC Guild,
+and then send the configuration for Eligius.  When it's all done, the miner
+will be aiming its shares at Eligius (unless it's down).
 
 The miner configuration needs to be copied from ./miner_config_example.json
 to ./miner_config.json and edited with the connection details for your
