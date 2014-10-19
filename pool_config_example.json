@@ -1,0 +1,65 @@
+[
+  {
+    "pool" : "Eligius",
+    "url" : "stratum+tcp://stratum.mining.eligius.st:3334",
+    "worker_prefix" : "1mineSNbjsnJRzXpbW3xUsvtSUjhPRsNy",
+    "worker_separator" : "_",
+    "coin" : "BTC",
+    "priority" : "0",
+    "algo" : "sha256"
+  },
+  {
+    "pool" : "Mining Pool Co. UNO",
+    "url" : "stratum+tcp://de1.miningpool.co:10701",
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "coin" : "UNO",
+    "priority" : "0",
+    "algo" : "sha256"
+  },
+  {
+    "pool" : "iSpace ZET",
+    "url" : "stratum+tcp://ispace.co.uk:3343",
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "coin" : "ZET",
+    "priority" : "0",
+    "algo" : "sha256"
+  },
+  {
+    "pool" : "WeMineLTC",
+    "url" : "stratum+tcp://gridseed.wemineltc.com:3333",
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "coin" : "LTC",
+    "priority" : "0",
+    "algo" : "scrypt"
+  },
+  {
+    "pool" : "WeMineFTC",
+    "url" : "stratum+tcp://stratum.wemineftc.com:4444",
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "coin" : "FTC",
+    "priority" : "0",
+    "algo" : "scrypt"
+  },
+  {
+    "pool" : "AnonMining",
+    "url" : "stratum+tcp://www.anonmining.com:3338",
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "coin" : "ANC",
+    "priority" : "0",
+    "algo" : "scrypt"
+  },
+  {
+    "pool" : "Scott's Bitgem Pool",
+    "url" : "stratum+tcp://bitgem.alfter.us:3333",
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "coin" : "BTG",
+    "priority" : "0",
+    "algo" : "scrypt"
+  }
+]
