@@ -1,7 +1,13 @@
 MinerSwitcher
 =============
 
-TODO: content
+This is a profitability-based mining farm pool switcher.  For the set of
+coins you have configured, it will determine how many of each you can
+produce given your hardware, and determine what they're worth in Bitcoin. 
+It will then reconfigure all of your miners accordingly.  MinerSwitcher is
+algorithm-agnostic: you can have a mix of sha256 miners, scrypt miners,
+etc., and each will be switched to whatever is most profitable for it to
+mine.
 
 Setup
 -----
@@ -38,3 +44,12 @@ pycgminer (included as a submodule):
 
 PyCryptsy (included as a submodule of ProfitLib):
   https://github.com/salfter/PyCryptsy    
+
+python-nmap
+  http://xael.org/norman/python/python-nmap/
+
+Also, you will need Cryptsy API credentials and a running *coind for each
+coin you want to consider mining.  Whether you mine solo or with a pool is
+up to you, but you'll need pool credentials (or *coind RPC credentials) in
+the pool configuration.  Multiple pools may be configured for a coin for
+redundancy.

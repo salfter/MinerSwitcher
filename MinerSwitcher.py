@@ -32,6 +32,23 @@ import time
 import json
 from decimal import *
 import operator
+import nmap
+import pprint
+
+# see if a port is open
+
+def PortIsOpen(hostname, port):
+  scan=nmap.PortScanner().scan(host, str(port))["scan"]
+  open=False
+  for i, ipaddr in enumerate(scan):
+    if (scan[ipaddr]["tcp"][port]["state"]=="open"):
+      open=True
+  return open
+
+# verify that at least one pool configured for a coin is up
+
+def CheckPools(coin, pools):
+  pass
 
 # reconfigure a cgminer/bfgminer instance to mine on another pool
 # (by default, remove all other pools)
@@ -95,7 +112,7 @@ def SwitchCoin(coin, algo, miners, pools):
         
         # switch a miner to the pool
         
-        pool_url=pools[pool[0]]["url"]
+        pool_url=pools[pool[0]]["protocol"]+"://"+pools[pool[0]]["hostname"]+":"+str(pools[pool[0]]["port"])
         pool_worker=pools[pool[0]]["worker_prefix"]+pools[pool[0]]["worker_separator"]+miner
         pool_worker_pass=pools[pool[0]]["worker_password"]
         if (k==0):
@@ -114,7 +131,7 @@ def now():
 # dump ProfitLib results as a table
 # (cribbed from ProfitLib/profit.py)
 
-def MakeTable(algo):
+def MakeTable(algo, profit):
   result={}
 
   for i, coin in enumerate(profit):
@@ -131,54 +148,59 @@ def MakeTable(algo):
   for i, r in enumerate(sorted_result):
     print r[0]+" "+str(r[1])
 
-# load config files
 
-miners=json.loads(open("miner_config.json").read())
-pools=json.loads(open("pool_config.json").read())
-pl=ProfitLib(json.loads(open("profit_config.json").read()))
+def main(argc, argv):
 
-# main loop
+  # load config files
 
-last_coin={}
-while (0==0):
-  print now()+": running ProfitLib"
-  profit=pl.Calculate()
+  miners=json.loads(open("miner_config.json").read())
+  pools=json.loads(open("pool_config.json").read())
+  pl=ProfitLib(json.loads(open("profit_config.json").read()))
 
-  # find algo types
+  # main loop
 
-  algos={}
-  for i, coin in enumerate(profit):
-    algos[profit[coin]["algo"]]=profit[coin]["algo"]
-    try:
-      z=last_coin[profit[coin]["algo"]] # see if it exists
-    except:
-      last_coin[profit[coin]["algo"]]="" # create it if it doesn't
+  last_coin={}
+  while (0==0):
+    print now()+": running ProfitLib"
+    profit=pl.Calculate()
 
-  # loop on available algos
+    # find algo types
+
+    algos={}
+    for i, coin in enumerate(profit):
+      algos[profit[coin]["algo"]]=profit[coin]["algo"]
+      try:
+        z=last_coin[profit[coin]["algo"]] # see if it exists
+      except:
+        last_coin[profit[coin]["algo"]]="" # create it if it doesn't
+
+    # loop on available algos
     
-  for i, algo in enumerate(algos):
+    for i, algo in enumerate(algos):
   
-    # find most profitable coin
+      # find most profitable coin
     
-    max=0
-    coin_max=""
-    for j, coin in enumerate(profit):
-      if (profit[coin]["algo"]==algo and profit[coin]["daily_revenue_btc"]>max):
-        max=profit[coin]["daily_revenue_btc"]
-        coin_max=coin
+      max=0
+      coin_max=""
+      for j, coin in enumerate(profit):
+        if (profit[coin]["algo"]==algo and profit[coin]["daily_revenue_btc"]>max):
+          max=profit[coin]["daily_revenue_btc"]
+          coin_max=coin
 
-    # print profitability table
+      # print profitability table
 
-    MakeTable(algo)
+      MakeTable(algo, profit)
     
-    # do we need to switch?
+      # do we need to switch?
     
-    if (last_coin[algo]!=coin_max):
-      SwitchCoin(coin_max, algo, miners, pools)
-      
-    last_coin[algo]=coin_max
+      if (last_coin[algo]!=coin_max):
+        SwitchCoin(coin_max, algo, miners, pools)
+        
+      last_coin[algo]=coin_max
     
-  # wait 30 minutes
+    # wait 30 minutes
 
-  print now()+": sleep for 30 minutes"
-  time.sleep(1800)
+    print now()+": sleep for 30 minutes"
+    time.sleep(1800)
+
+main(len(sys.argv), sys.argv)
