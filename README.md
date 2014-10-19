@@ -4,7 +4,7 @@ MinerSwitcher
 TODO: content
 
 Setup
-=====
+-----
 
 This project has nested submodules, which you can pull through with the
 following:
@@ -18,7 +18,7 @@ git submodule update
 ```
 
 Dependencies
-============
+------------
 
 ProfitLib (included as submodule):
   https://github.com/salfter/ProfitLib
