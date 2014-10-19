@@ -53,3 +53,10 @@ coin you want to consider mining.  Whether you mine solo or with a pool is
 up to you, but you'll need pool credentials (or *coind RPC credentials) in
 the pool configuration.  Multiple pools may be configured for a coin for
 redundancy.
+
+Donations
+=========
+
+Donations are always welcome if you find this useful...hit the tipjar!
+
+bitcoin://1TipsGocnz2N5qgAm9f7JLrsMqkb3oXe2
