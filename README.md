@@ -14,6 +14,9 @@ MinerSwitcher verifies that at least one of your configured pools is still
 up.  If it isn't, it prints a warning and moves on to the next most
 profitable pool.
 
+MinerSwitcher can be configured to send Pushover notifications if a miner is
+down or the pools for a coin aren't responding.
+
 Setup
 -----
 
@@ -45,6 +48,17 @@ to ./miner_config.json and edited with the connection details for your
 cgminer and/or bfgminer instances.  Read/write access needs to be enabled
 for each instance.
 
+To enable Pushover notifications, copy ./pushover_config_example.json to
+./pushover_config.json and fill it in with your credentials.  Your user key
+is on their homepage when you're logged in; copy it to the user_key field. 
+You'll need to create an application API key; go to
+https://pushover.net/apps/build, fill in the blanks.  If you want, you may
+use the included icon file (mining-icon-red.png) with your configuration. 
+Click "Create Application." Copy the application key Pushover gives you to
+the app_key field.
+
+If you don't want to use Pushover, no configuration is needed.
+
 Dependencies
 ------------
 
@@ -60,11 +74,17 @@ PyCryptsy (included as a submodule of ProfitLib):
 python-nmap
   http://xael.org/norman/python/python-nmap/
 
+python-pushover
+  http://pythonhosted.org/python-pushover
+
 Also, you will need Cryptsy API credentials and a running *coind for each
 coin you want to consider mining.  Whether you mine solo or with a pool is
 up to you, but you'll need pool credentials (or *coind RPC credentials) in
 the pool configuration.  Multiple pools may be configured for a coin for
 redundancy.
+
+A Pushover account is optional.  With it, MinerSwitcher can notify you of
+problems with your setup.
 
 Donations
 =========

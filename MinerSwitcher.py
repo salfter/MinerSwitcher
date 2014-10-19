@@ -33,6 +33,13 @@ import json
 from decimal import *
 import operator
 import nmap
+from pushover import init, Client
+
+# send Pushover notification
+
+def SendNotification(pushover_keys, title, msg):
+  init(pushover_keys["app_key"]) # Pushover API key for MiningSwitcher
+  client=Client(pushover_keys["user_key"]).send_message(msg, title=title, priority=1)
 
 # see if a port is open
 
@@ -100,7 +107,7 @@ def SwitchPool(hostname, port, pool_url, pool_worker, pool_passwd, clear=1):
 
 # switch all miners of a given type to a different coin
 
-def SwitchCoin(coin, algo, miners, pools):
+def SwitchCoin(coin, algo, miners, pools, pushover_key):
 
   # enumerate compatible miners
 
@@ -133,6 +140,8 @@ def SwitchCoin(coin, algo, miners, pools):
         try:
           SwitchPool(miner, rpc_port, pool_url, pool_worker, pool_worker_pass, clear)
         except:
+          if (pushover_key!=None):
+            SendNotification(pushover_key, miner+" Down", "MinerSwitcher was unable to switch "+miner+" to "+coin+" mining. Is it down?")
           print now()+": unable to switch "+miner+" to "+coin+"...miner down?"
 
 # get current date & time
@@ -169,6 +178,10 @@ def main(argc, argv):
   miners=json.loads(open("miner_config.json").read())
   pools=json.loads(open("pool_config.json").read())
   pl=ProfitLib(json.loads(open("profit_config.json").read()))
+  try:
+    pushover_key=json.loads(open("pushover_config.json").read())
+  except:
+    pushover_key=None
 
   # main loop
 
@@ -191,15 +204,6 @@ def main(argc, argv):
     
     for i, algo in enumerate(algos):
   
-      ## find most profitable coin
-      #   
-      #max=0
-      #coin_max=""
-      #for j, coin in enumerate(profit):
-      #  if (profit[coin]["algo"]==algo and profit[coin]["daily_revenue_btc"]>max):
-      #    max=profit[coin]["daily_revenue_btc"]
-      #    coin_max=coin
-
       # print profitability table, and find the most profitable coin
 
       tbl=MakeTable(algo, profit)
@@ -214,15 +218,19 @@ def main(argc, argv):
           coin_max=coin[0]
           break
         else:
+          if (pushover_key!=None):
+            SendNotification(pushover_key, coin[0]+" Pools Down", "None of the pools you have configured for "+coin[0]+" are responding.")
           print now()+": all "+coin[0]+" pools down...skipping!"
       if (running==False):
+        if (pushover_key!=None):
+          SendNotification(pushover_key, "ALL POOLS DOWN!!!", "None of your configured pools are responding.")
         print now()+": ALL POOLS DOWN!!!"
       else:
           
         # do we need to switch?
       
         if (last_coin[algo]!=coin_max):
-          SwitchCoin(coin_max, algo, miners, pools)
+          SwitchCoin(coin_max, algo, miners, pools, pushover_key)
           
         last_coin[algo]=coin_max
     

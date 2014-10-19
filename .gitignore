@@ -1,5 +1,3 @@
 *.pyc
 *~
-profit_config.json
-miner_config.json
-pool_config.json
+*_config.json
