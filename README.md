@@ -6,15 +6,12 @@ TODO: content
 Setup
 -----
 
-This project has nested submodules, which you can pull through with the
-following:
+This project has nested submodules, and one submodule needs a path fix so
+it'll be included properly.  Use the following to fix everything up:
 
 ```
-git submodule init  
-git submodule update
-cd ProfitLib
-git submodule init
-git submodule update
+git submodule update --init --recursive
+patch -p0 <ProfitLib-path-fix.patch
 ```
 
 Dependencies
