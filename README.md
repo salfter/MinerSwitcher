@@ -59,6 +59,27 @@ the app_key field.
 
 If you don't want to use Pushover, no configuration is needed.
 
+Usage
+-----
+
+I recommend running MinerSwitcher inside a screen session:
+
+http://www.gnu.org/software/screen
+
+Invocation is simple:
+
+```
+screen -dmS MinerSwitcher ./MinerSwitcher.py
+```
+
+To see what it's doing, use this:
+
+```
+screen -dr MinerSwitcher
+```
+
+To put MinerSwitcher back in the background, press Ctrl-A Ctrl-D.
+
 Dependencies
 ------------
 
