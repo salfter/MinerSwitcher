@@ -1,0 +1,3 @@
+[submodule "ProfitLib"]
+	path = ProfitLib
+	url = https://github.com/salfter/ProfitLib
