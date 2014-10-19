@@ -2,9 +2,13 @@
 # coding=iso-8859-1
 
 import sys
+sys.path.insert(0, './ProfitLib/')
+from ProfitLib import ProfitLib
 sys.path.insert(0, './pycgminer/')
 from pycgminer import CgminerAPI
 import time
+import json
+import pprint
 
 def SwitchPool(hostname, port, pool_url, pool_worker, pool_passwd):
   a=CgminerAPI(hostname, port)
@@ -33,5 +37,18 @@ def SwitchPool(hostname, port, pool_url, pool_worker, pool_passwd):
   delete_list.sort(reverse=True)
   for i, num in enumerate(delete_list):
     a.removepool(num)
-      
-SwitchPool("miner1", 4029, "stratum+tcp://stratum.wemineftc.com:4444", "salfter.miner1", "x")
+
+# load config files
+
+miners=json.loads(open("miner_config.json").read())
+pools=json.loads(open("pool_config.json").read())
+pl=ProfitLib(json.loads(open("profit_config.json").read()))
+
+# main loop
+
+while (0==0):
+  print "running ProfitLib"
+  #profit=pl.Calculate()
+  print "sleep"
+  time.sleep(1800)
+  #SwitchPool("miner1", 4029, "stratum+tcp://stratum.wemineftc.com:4444", "salfter.miner1", "x")

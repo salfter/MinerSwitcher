@@ -5,7 +5,7 @@
     "worker_prefix" : "1mineSNbjsnJRzXpbW3xUsvtSUjhPRsNy",
     "worker_separator" : "_",
     "coin" : "BTC",
-    "priority" : "0",
+    "priority" : 0,
     "algo" : "sha256"
   },
   {
@@ -14,7 +14,7 @@
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "coin" : "UNO",
-    "priority" : "0",
+    "priority" : 0,
     "algo" : "sha256"
   },
   {
@@ -23,7 +23,7 @@
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "coin" : "ZET",
-    "priority" : "0",
+    "priority" : 0,
     "algo" : "sha256"
   },
   {
@@ -32,7 +32,7 @@
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "coin" : "LTC",
-    "priority" : "0",
+    "priority" : 0,
     "algo" : "scrypt"
   },
   {
@@ -41,7 +41,7 @@
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "coin" : "FTC",
-    "priority" : "0",
+    "priority" : 0,
     "algo" : "scrypt"
   },
   {
@@ -50,7 +50,7 @@
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "coin" : "ANC",
-    "priority" : "0",
+    "priority" : 0,
     "algo" : "scrypt"
   },
   {
@@ -59,7 +59,7 @@
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "coin" : "BTG",
-    "priority" : "0",
+    "priority" : 0,
     "algo" : "scrypt"
   }
 ]
