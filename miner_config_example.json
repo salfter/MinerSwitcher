@@ -1,22 +1,22 @@
 {
   "miner1" : {
     "hostname" : "miner1",
-    "rpc_port" : "4029",
+    "rpc_port" : 4029,
     "algo" : "scrypt"
   },
   "miner2" : {
     "hostname" : "miner2",
-    "rpc_port" : "4028",
+    "rpc_port" : 4028,
     "algo" : "sha256"
   },
   "miner3" : {
     "hostname" : "miner3",
-    "rpc_port" : "4028",
+    "rpc_port" : 4028,
     "algo" : "sha256"
   },
   "miner4" : {
     "hostname" : "miner4",
-    "rpc_port" : "4028",
+    "rpc_port" : 4028,
     "algo" : "sha256"
   }
 }
