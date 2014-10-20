@@ -224,7 +224,7 @@ def main(argc, argv):
       try:
         profit=pl.Calculate()
         ok=True
-      except:
+      except CannotSendRequest:
         print now()+": caught an exception, trying again...daemons slow to respond?"
 
     # find algo types
