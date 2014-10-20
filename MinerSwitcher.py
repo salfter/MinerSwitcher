@@ -218,8 +218,14 @@ def main(argc, argv):
 
     # get updated profitability
 
-    print now()+": running ProfitLib"
-    profit=pl.Calculate()
+    ok=False
+    while (ok==False):
+      print now()+": running ProfitLib"
+      try:
+        profit=pl.Calculate()
+        ok=True
+      except:
+        print now()+": caught an exception, trying again...daemons slow to respond?"
 
     # find algo types
 
