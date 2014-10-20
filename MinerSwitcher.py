@@ -35,11 +35,28 @@ import operator
 import nmap
 from pushover import init, Client
 
+# check coin daemons
+
+def CheckDaemons(daemons, pushover_keys):
+  down=""
+  for i, daemon in enumerate(daemons):
+    if (daemon!="cryptsy_pubkey" and daemon!="cryptsy_privkey"):
+      if (daemons[daemon]["active"]==1):
+        if (PortIsOpen(daemons[daemon]["host"], daemons[daemon]["port"])==False):
+          down+=daemon+" "
+  if (down!=""):
+    SendNotification(pushover_keys, "Coin Daemons Down", "These coin daemons are not responding: "+down)
+    print now()+": dead coin daemons: "+down
+    return False
+  else:
+    return True
+
 # send Pushover notification
 
 def SendNotification(pushover_keys, title, msg):
-  init(pushover_keys["app_key"]) # Pushover API key for MiningSwitcher
-  client=Client(pushover_keys["user_key"]).send_message(msg, title=title, priority=1)
+  if (pushover_keys!=None):
+    init(pushover_keys["app_key"]) # Pushover API key for MiningSwitcher
+    client=Client(pushover_keys["user_key"]).send_message(msg, title=title, priority=1)
 
 # see if a port is open
 
@@ -177,7 +194,8 @@ def main(argc, argv):
 
   miners=json.loads(open("miner_config.json").read())
   pools=json.loads(open("pool_config.json").read())
-  pl=ProfitLib(json.loads(open("profit_config.json").read()))
+  daemons=json.loads(open("profit_config.json").read())
+  pl=ProfitLib(daemons)
   try:
     pushover_key=json.loads(open("pushover_config.json").read())
   except:
@@ -187,6 +205,19 @@ def main(argc, argv):
 
   last_coin={}
   while (0==0):
+
+    # check coin daemons
+
+    print now()+": checking coin daemons"    
+    if (CheckDaemons(daemons, pushover_key)==False):
+      print now()+": suspending operation until all daemons are running"
+      while (0==0):
+        time.sleep(60)
+        if (CheckDaemons(daemons, None)):
+          break  
+
+    # get updated profitability
+
     print now()+": running ProfitLib"
     profit=pl.Calculate()
 
@@ -240,3 +271,4 @@ def main(argc, argv):
     time.sleep(1800)
 
 main(len(sys.argv), sys.argv)
+
