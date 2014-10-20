@@ -28,6 +28,7 @@ sys.path.insert(0, './pycgminer/')
 from pycgminer import CgminerAPI
 import json
 import operator
+import time
 
 # reconfigure a cgminer/bfgminer instance to mine on another pool
 # (by default, remove all other pools)
