@@ -119,7 +119,7 @@ def main(argc, argv):
 
   miners=json.loads(open("miner_config.json").read())
   pools=json.loads(open("pool_config.json").read())
-  coins=json.loads(open("profit_config.json").read())
+  coins=json.loads(open("daemon_config.json").read())
 
   SwitchCoin(argv[1], coins[argv[1]]["algo"], miners, pools)
 
