@@ -31,10 +31,13 @@ patch -p0 <ProfitLib-path-fix.patch
 For python-nmap and python-pushover, you can either use your distro's
 provided packages (if available) or you can use pip to fetch and install.
 
-The ProfitLib configuration needs to be copied from
-./ProfitLib/profit_config_example.json to ./profit_config.json and edited
-appropriately.  In addition to Cryptsy API credentials, you will need RPC
-access to coin daemons for the coins you want to switch between.
+The ProfitLib configuration files need to be copied from 
+./ProfitLib/*_config_example.json to ./*_config.json and edited 
+appropriately.  In addition to Cryptsy API credentials, you will 
+need RPC access to coin daemons for the coins you want to switch 
+between.  Setting hashrates in daemon_config.json is unnecessary; 
+hashrates will be populated with values calculated from the miner
+configuration (below).
 
 The pool configuration needs to be copied from ./pool_config_example.json to
 ./pool_config.json and edited with the credentials for the pools you use.
@@ -49,7 +52,8 @@ will be aiming its shares at Eligius (unless it's down).
 The miner configuration needs to be copied from ./miner_config_example.json
 to ./miner_config.json and edited with the connection details for your
 cgminer and/or bfgminer instances.  Read/write access needs to be enabled
-for each instance.
+for each instance.  Average hashrate for each miner should be set for best
+results.
 
 To enable Pushover notifications, copy ./pushover_config_example.json to
 ./pushover_config.json and fill it in with your credentials.  Your user key

@@ -40,10 +40,10 @@ from pushover import init, Client
 def CheckDaemons(daemons, pushover_keys):
   down=""
   for i, daemon in enumerate(daemons):
-    if (daemon!="cryptsy_pubkey" and daemon!="cryptsy_privkey"):
-      if (daemons[daemon]["active"]==1):
-        if (PortIsOpen(daemons[daemon]["host"], daemons[daemon]["port"])==False):
-          down+=daemon+" "
+    #if (daemon!="cryptsy_pubkey" and daemon!="cryptsy_privkey"):
+    if (daemons[daemon]["active"]==1):
+      if (PortIsOpen(daemons[daemon]["host"], daemons[daemon]["port"])==False):
+        down+=daemon+" "
   if (down!=""):
     SendNotification(pushover_keys, "Coin Daemons Down", "These coin daemons are not responding: "+down)
     print now()+": dead coin daemons: "+down
@@ -193,9 +193,10 @@ def main(argc, argv):
 
   # load config files
 
+  exchanges=json.loads(open("exchange_config.json").read())
   miners=json.loads(open("miner_config.json").read())
   pools=json.loads(open("pool_config.json").read())
-  daemons=json.loads(open("profit_config.json").read())
+  daemons=json.loads(open("daemon_config.json").read())
   try:
     pushover_key=json.loads(open("pushover_config.json").read())
   except:
@@ -209,10 +210,10 @@ def main(argc, argv):
   for i, miner in enumerate(miners): # sum on 2nd pass
     hashrates[miners[miner]["algo"]]+=miners[miner]["hashrate"]
   for i, coin in enumerate(daemons): # update daemons
-    if (coin!="cryptsy_privkey" and coin!="cryptsy_pubkey"):
-      daemons[coin]["hashespersec"]=hashrates[daemons[coin]["algo"]]
+    #if (coin!="cryptsy_privkey" and coin!="cryptsy_pubkey"):
+    daemons[coin]["hashespersec"]=hashrates[daemons[coin]["algo"]]
   
-  pl=ProfitLib(daemons)
+  pl=ProfitLib(daemons, exchanges)
   
   # main loop
 
