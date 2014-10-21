@@ -187,6 +187,7 @@ def MakeTable(algo, profit):
     
   return sorted_result
 
+# C-style main() to eliminate global scope
 
 def main(argc, argv):
 
@@ -195,12 +196,24 @@ def main(argc, argv):
   miners=json.loads(open("miner_config.json").read())
   pools=json.loads(open("pool_config.json").read())
   daemons=json.loads(open("profit_config.json").read())
-  pl=ProfitLib(daemons)
   try:
     pushover_key=json.loads(open("pushover_config.json").read())
   except:
     pushover_key=None
 
+  # override hashrates in daemons dict with totals from miners dict
+  
+  hashrates={}
+  for i, miner in enumerate(miners): # init on 1st pass
+    hashrates[miners[miner]["algo"]]=0
+  for i, miner in enumerate(miners): # sum on 2nd pass
+    hashrates[miners[miner]["algo"]]+=miners[miner]["hashrate"]
+  for i, coin in enumerate(daemons): # update daemons
+    if (coin!="cryptsy_privkey" and coin!="cryptsy_pubkey"):
+      daemons[coin]["hashespersec"]=hashrates[daemons[coin]["algo"]]
+  
+  pl=ProfitLib(daemons)
+  
   # main loop
 
   last_coin={}
