@@ -92,7 +92,7 @@ def SwitchCoin(coin, algo, miners, pools):
         
         # switch a miner to the pool
         
-        pool_url=pools[pool[0]]["protocol"]+"://"+pools[pool[0]]["hostname"]+":"+str(pools[pool[0]]["port"])
+        pool_url=pools[pool[0]]["protocol"]+"://"+pools[pool[0]]["hostname"]+":"+str(pools[pool[0]]["port"])+miners[miner]["url_suffix"]
         pool_worker=pools[pool[0]]["worker_prefix"]+pools[pool[0]]["worker_separator"]+miner
         pool_worker_pass=pools[pool[0]]["worker_password"]
         if (k==0):

@@ -53,7 +53,9 @@ The miner configuration needs to be copied from ./miner_config_example.json
 to ./miner_config.json and edited with the connection details for your
 cgminer and/or bfgminer instances.  Read/write access needs to be enabled
 for each instance.  Average hashrate for each miner should be set for best
-results.
+results.  url_suffix is appended to the URL sent to the miner; it's intended
+to pass extra options to the miner (such as to disable the "coinbase check"
+in recent versions of bfgminer that causes problems with some pools).
 
 To enable Pushover notifications, copy ./pushover_config_example.json to
 ./pushover_config.json and fill it in with your credentials.  Your user key
