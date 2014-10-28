@@ -187,6 +187,36 @@ def MakeTable(algo, profit):
     
   return sorted_result
 
+# find currently active pool
+
+def FindActivePool(miner):
+  a=CgminerAPI(miner["hostname"], miner["rpc_port"])
+  pools=a.pools()["POOLS"]
+  for i in range(0, len(pools)):
+    try:
+      if (pools[i]["Stratum Active"]==True):
+        return pools[i]["Stratum URL"]
+    except:
+      pass
+    # TODO: add checks for non-stratum servers
+  return ""
+
+# make sure we're making some sort of progress
+
+def CheckMiners(miners, accepted, rejected):  
+  rtnval={}
+  for i, miner in enumerate(miners):
+    try:
+      a=CgminerAPI(miners[miner]["hostname"], miners[miner]["rpc_port"])
+      summary=a.summary()["SUMMARY"]
+      if (accepted[miner]==summary[0]["Accepted"] and rejected[miner]==summary[0]["Rejected"] and accepted[miner]!=-1 and rejected[miner]!=-1):
+        rtnval[miner]=FindActivePool(miners[miner])
+      accepted[miner]=summary[0]["Accepted"]
+      rejected[miner]=summary[0]["Rejected"]
+    except:
+      pass
+  return rtnval
+  
 # C-style main() to eliminate global scope
 
 def main(argc, argv):
@@ -202,6 +232,16 @@ def main(argc, argv):
   except:
     pushover_key=None
 
+  # initialize accepted/rejected counters
+
+  accepted={}
+  rejected={}
+  pool_up={}
+  for i, miner in enumerate(miners):
+    accepted[miner]=-1
+    rejected[miner]=-1
+    pool_up[miner]=True
+
   # override hashrates in daemons dict with totals from miners dict
   
   hashrates={}
@@ -210,7 +250,6 @@ def main(argc, argv):
   for i, miner in enumerate(miners): # sum on 2nd pass
     hashrates[miners[miner]["algo"]]+=miners[miner]["hashrate"]
   for i, coin in enumerate(daemons): # update daemons
-    #if (coin!="cryptsy_privkey" and coin!="cryptsy_pubkey"):
     daemons[coin]["hashespersec"]=hashrates[daemons[coin]["algo"]]
   
   pl=ProfitLib(daemons, exchanges)
@@ -286,9 +325,24 @@ def main(argc, argv):
         last_coin[algo]=coin_max
     
     # wait 30 minutes
+    # check miners every other minute to make sure they're working
 
     print now()+": sleep for 30 minutes"
-    time.sleep(1800)
+
+    for i in range(0,15):
+      time.sleep(120)
+      down=CheckMiners(miners, accepted, rejected)
+      if (len(down)>0):
+        for i, miner in enumerate(down):
+          print now()+": no progress made at "+down[miner]+" by "+miner
+          if (pool_up[miner]==True):
+            SendNotification(pushover_key, "Pool Issue", "No progress made at "+down[miner]+" by "+miner+".")
+            pool_up[miner]=False
+      for i, miner in enumerate(pool_up):
+        try:
+          t=down[miner]
+        except:
+          pool_up[miner]=True
 
 main(len(sys.argv), sys.argv)
 
