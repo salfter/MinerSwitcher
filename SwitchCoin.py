@@ -85,7 +85,7 @@ def SwitchCoin(coin, algo, miners, pools):
       
       pool_priorities={}
       for j, pool in enumerate(pools):
-        if (pools[pool]["coin"]==coin):
+        if (pools[pool]["coin"]==coin and pools[pool]["active"]==1):
           pool_priorities[pool]=pools[pool]["priority"]
       sorted_priorities=sorted(pool_priorities.items(), key=operator.itemgetter(1))
       for k, pool in enumerate(sorted_priorities):

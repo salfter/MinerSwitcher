@@ -8,18 +8,8 @@
     "worker_password" : "x",
     "coin" : "BTC",
     "priority" : 10,
-    "algo" : "sha256"
-  },
-  "BTC Guild" : {
-    "protocol" : "stratum+tcp",
-    "hostname" : "stratum.btcguild.com",
-    "port" : 3333,
-    "worker_prefix" : "salfter",
-    "worker_separator" : "_",
-    "worker_password" : "x",
-    "coin" : "BTC",
-    "priority" : 0,
-    "algo" : "sha256"
+    "algo" : "sha256",
+    "active" : 1
   },
   "Mining Pool Co. UNO" : {
     "protocol" : "stratum+tcp",
@@ -30,18 +20,92 @@
     "worker_password" : "x",
     "coin" : "UNO",
     "priority" : 0,
-    "algo" : "sha256"
+    "algo" : "sha256",
+    "active" : 1
   },
-  "iSpace ZET" : {
+  "zet.coinmine.pl" : {
     "protocol" : "stratum+tcp",
-    "hostname" : "ispace.co.uk",
-    "port" : 3343,
+    "hostname" : "mine1.coinmine.pl",
+    "port" : 6000,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "ZET",
+    "priority" : 10,
+    "algo" : "sha256",
+    "active" : 1
+  },
+  "Coinz ZET" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "zet.coinz.pw",
+    "port" : 3508,
     "worker_prefix" : "salfter",
     "worker_separator" : ".",
     "worker_password" : "x",
     "coin" : "ZET",
     "priority" : 0,
-    "algo" : "sha256"
+    "algo" : "sha256",
+    "active" : 1
+  },
+  "Coinz FST" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "fst.coinz.pw",
+    "port" : 3500,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "FST",
+    "priority" : 0,
+    "algo" : "scrypt",
+    "active" : 1
+  },
+  "iSpace DEM" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "ispace.co.uk",
+    "port" : 3338,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "DEM",
+    "priority" : 0,
+    "algo" : "sha256",
+    "active" : 1
+  },
+  "iSpace OSC" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "ispace.co.uk",
+    "port" : 3335,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "OSC",
+    "priority" : 0,
+    "algo" : "sha256",
+    "active" : 1
+  },
+  "TomPool TRC" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "tompool.org",
+    "port" : 3352,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "TRC",
+    "priority" : 10,
+    "algo" : "sha256",
+    "active" : 1
+  },
+  "iSpace TRC" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "ispace.co.uk",
+    "port" : 3332,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "TRC",
+    "priority" : 0,
+    "algo" : "sha256",
+    "active" : 1
   },
   "WeMineLTC" : {
     "protocol" : "stratum+tcp",
@@ -52,18 +116,8 @@
     "worker_password" : "x",
     "coin" : "LTC",
     "priority" : 0,
-    "algo" : "scrypt"
-  },
-  "WeMineFTC" : {
-    "protocol" : "stratum+tcp",
-    "hostname" : "stratum.wemineftc.com",
-    "port" : 4444,
-    "worker_prefix" : "salfter",
-    "worker_separator" : ".",
-    "worker_password" : "x",
-    "coin" : "FTC",
-    "priority" : 0,
-    "algo" : "scrypt"
+    "algo" : "scrypt",
+    "active" : 1
   },
   "AnonMining" : {
     "protocol" : "stratum+tcp",
@@ -74,9 +128,10 @@
     "worker_password" : "x",
     "coin" : "ANC",
     "priority" : 0,
-    "algo" : "scrypt"
+    "algo" : "scrypt",
+    "active" : 1
   },
-  "Scott's Bitgem Pool" : {
+  "My Bitgem Pool" : {
     "protocol" : "stratum+tcp",
     "hostname" : "bitgem.alfter.us",
     "port" : 3333,
@@ -85,7 +140,8 @@
     "worker_password" : "x",
     "coin" : "BTG",
     "priority" : 0,
-    "algo" : "scrypt"
+    "algo" : "scrypt",
+    "active" : 1
   },
   "HashFaster 42" : {
     "protocol" : "stratum+tcp",
@@ -95,7 +151,140 @@
     "worker_separator" : ".",
     "worker_password" : "x",
     "coin" : "42",
+    "priority" : 10,
+    "algo" : "scrypt",
+    "active" : 1
+  },
+  "D7 PPC" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "ca.d7.lt",
+    "port" : 3333,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "PPC",
     "priority" : 0,
-    "algo" : "scrypt"
+    "algo" : "sha256",
+    "active" : 1
+  },
+  "TomPool EAC" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "tompool.org",
+    "port" : 3385,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "EAC",
+    "priority" : 0,
+    "algo" : "scrypt",
+    "active" : 1
+  },
+  "TomPool FST" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "tompool.org",
+    "port" : 3363,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "FST",
+    "priority" : 10,
+    "algo" : "scrypt",
+    "active" : 1
+  },
+  "Lavajumper SXC" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "lavapit.lavajumper.com",
+    "port" : 3693,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "SXC",
+    "priority" : 0,
+    "algo" : "scrypt",
+    "active" : 1
+  },
+  "Tompool GDC" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "tompool.org",
+    "port" : 3372,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "GDC",
+    "priority" : 0,
+    "algo" : "scrypt",
+    "active" : 1
+  },
+  "Multipool NVC" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "us-west.multipool.us",
+    "port" : 3344,
+    "worker_prefix" : "s_alfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "NVC",
+    "priority" : 0,
+    "algo" : "scrypt",
+    "active" : 1
+  },
+  "Khore NVC" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "stratum.khore.org",
+    "port" : 3336,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "NVC",
+    "priority" : 10,
+    "algo" : "scrypt",
+    "active" : 1
+  },
+  "TheBlocksFactory VIA" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "stratum.via.theblocksfactory.com",
+    "port" : 3339,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "VIA",
+    "priority" : 0,
+    "algo" : "scrypt",
+    "active" : 1
+  },
+  "TomPool VIA" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "tompool.org",
+    "port" : 3237,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "VIA",
+    "priority" : 10,
+    "algo" : "scrypt",
+    "active" : 1
+  },
+  "SlugMonkey TIT" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "titcoin.slugmonkeypool.net",
+    "port" : 3336,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "TIT",
+    "priority" : 0,
+    "algo" : "sha256",
+    "active" : 0
+  },
+  "iSpace TIT" : {
+    "protocol" : "stratum+tcp",
+    "hostname" : "ispace.co.uk",
+    "port" : 3513,
+    "worker_prefix" : "salfter",
+    "worker_separator" : ".",
+    "worker_password" : "x",
+    "coin" : "TIT",
+    "priority" : 0,
+    "algo" : "sha256",
+    "active" : 1
   }
 }
