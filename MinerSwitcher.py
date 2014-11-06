@@ -61,7 +61,7 @@ def SendNotification(pushover_keys, title, msg):
 # see if a port is open
 
 def PortIsOpen(host, port):
-  scan=nmap.PortScanner().scan(hosts=host, ports=str(port), arguments="")["scan"]
+  scan=nmap.PortScanner().scan(hosts=host, ports=str(port), arguments="-Pn")["scan"]
   open=False
   for i, ipaddr in enumerate(scan):
     if (scan[ipaddr]["tcp"][port]["state"]=="open"):
