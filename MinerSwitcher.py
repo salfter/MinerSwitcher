@@ -98,7 +98,7 @@ def SwitchPool(hostname, port, pool_url, pool_worker, pool_passwd, clear=1):
   live=0
   while (live==0):
     for i, pool in enumerate(a.pools()["POOLS"]):
-      if (pool["URL"]==pool_url and pool["Status"]=="Alive"):
+      if (pool["URL"]==pool_url and pool["User"]==pool_worker and pool["Status"]=="Alive"):
         live=1
     if (live==0):
       time.sleep(1)
@@ -109,7 +109,7 @@ def SwitchPool(hostname, port, pool_url, pool_worker, pool_passwd, clear=1):
   delete_list=[]
   found=0
   for i, pool in enumerate(pools):
-    if (pool["URL"]==pool_url and found==0):
+    if (pool["URL"]==pool_url and pool["User"]==pool_worker and found==0):
       found=1
       a.switchpool(pool["POOL"])
     else:
