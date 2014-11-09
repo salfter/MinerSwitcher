@@ -46,7 +46,7 @@ def SwitchPool(hostname, port, pool_url, pool_worker, pool_passwd, clear=1):
   live=0
   while (live==0):
     for i, pool in enumerate(a.pools()["POOLS"]):
-      if (pool["URL"]==pool_url and pool["User"]==pool_worker and pool["Status"]=="Alive"):
+      if (pool["URL"]==pool_url and pool["User"]==pool_worker):
         live=1
     if (live==0):
       time.sleep(1)
