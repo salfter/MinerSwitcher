@@ -103,7 +103,7 @@ def SwitchCoin(coin, algo, miners, pools):
         print "switching "+miner+" to "+pool[0]
 
         try:
-          SwitchPool(miner, rpc_port, pool_url, pool_worker, pool_worker_pass, clear)
+          SwitchPool(hostname, rpc_port, pool_url, pool_worker, pool_worker_pass, clear)
         except:
           print "unable to switch "+miner+" to "+coin+"...miner down?"
 

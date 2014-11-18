@@ -154,7 +154,7 @@ def SwitchCoin(coin, algo, miners, pools, pushover_key):
         print now()+": switching "+miner+" to "+pool[0]
 
         try:
-          SwitchPool(miner, rpc_port, pool_url, pool_worker, pool_worker_pass, clear)
+          SwitchPool(hostname, rpc_port, pool_url, pool_worker, pool_worker_pass, clear)
         except:
           if (pushover_key!=None):
             SendNotification(pushover_key, miner+" Down", "MinerSwitcher was unable to switch "+miner+" to "+coin+" mining. Is it down?")
