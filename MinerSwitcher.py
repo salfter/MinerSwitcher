@@ -328,8 +328,8 @@ def main(argc, argv):
 
     print now()+": sleep for 30 minutes"
 
-    for i in range(0,15):
-      time.sleep(120)
+    for i in range(0,10):
+      time.sleep(180)
       down=CheckMiners(miners, accepted, rejected)
       if (len(down)>0):
         for i, miner in enumerate(down):
