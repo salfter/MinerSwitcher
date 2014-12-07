@@ -249,7 +249,10 @@ def main(argc, argv):
   for i, miner in enumerate(miners): # sum on 2nd pass
     hashrates[miners[miner]["algo"]]+=miners[miner]["hashrate"]
   for i, coin in enumerate(daemons): # update daemons
-    daemons[coin]["hashespersec"]=hashrates[daemons[coin]["algo"]]
+    try:
+      daemons[coin]["hashespersec"]=hashrates[daemons[coin]["algo"]]
+    except:
+      pass
   
   pl=ProfitLib(daemons, exchanges)
   
@@ -328,8 +331,8 @@ def main(argc, argv):
 
     print now()+": sleep for 30 minutes"
 
-    for i in range(0,10):
-      time.sleep(180)
+    for i in range(0,6):
+      time.sleep(300)
       down=CheckMiners(miners, accepted, rejected)
       if (len(down)>0):
         for i, miner in enumerate(down):
