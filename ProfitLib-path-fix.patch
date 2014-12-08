@@ -1,11 +1,20 @@
---- ProfitLib/ProfitLib.py~	2014-10-18 21:27:56.000000000 -0700
-+++ ProfitLib/ProfitLib.py	2014-10-18 21:28:11.462471487 -0700
-@@ -27,7 +27,7 @@
+--- ProfitLib/ProfitLib.py~	2014-12-08 11:06:07.000000000 -0800
++++ ProfitLib/ProfitLib.py	2014-12-08 11:06:57.703003040 -0800
+@@ -27,13 +27,13 @@
  import jsonrpc
  import sys
  from decimal import *
 -sys.path.insert(0, './PyCryptsy/')
 +sys.path.insert(0, './ProfitLib/PyCryptsy/')
  from PyCryptsy import PyCryptsy
+-sys.path.insert(0, './python-bittrex/bittrex/')
++sys.path.insert(0, './ProfitLib/python-bittrex/bittrex/')
+ from bittrex import Bittrex
+-sys.path.insert(0, './PyCCEX/')
++sys.path.insert(0, './ProfitLib/PyCCEX/')
+ from PyCCEX import PyCCEX
+-sys.path.insert(0, './PyCoinsE/')
++sys.path.insert(0, './ProfitLib/PyCoinsE/')
+ from PyCoinsE import PyCoinsE
  
  class ProfitLib:
