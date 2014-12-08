@@ -33,11 +33,12 @@ provided packages (if available) or you can use pip to fetch and install.
 
 The ProfitLib configuration files need to be copied from 
 ./ProfitLib/*_config_example.json to ./*_config.json and edited 
-appropriately.  In addition to Cryptsy API credentials, you will 
+appropriately.  In addition to exchange API credentials, you will 
 need RPC access to coin daemons for the coins you want to switch 
 between.  Setting hashrates in daemon_config.json is unnecessary; 
 hashrates will be populated with values calculated from the miner
-configuration (below).
+configuration (below).  If you don't want to check a particular exchange,
+remove its section from exchange_config.json.
 
 The pool configuration needs to be copied from ./pool_config_example.json to
 ./pool_config.json and edited with the credentials for the pools you use.
@@ -101,13 +102,22 @@ pycgminer (included as a submodule):
 PyCryptsy (included as a submodule of ProfitLib):
   https://github.com/salfter/PyCryptsy    
 
+python-bittrex (included as a submodule of ProfitLib):
+  https://github.com/ericsomdahl/python-bittrex
+
+PyCoinsE (included as a submodule of ProfitLib):
+  https://github.com/salfter/PyCoinsE
+
+PyCCEX (included as a submodule of ProfitLib):
+  https://github.com/salfter/PyCCEX
+
 python-nmap
   http://xael.org/norman/python/python-nmap/
 
 python-pushover
   http://pythonhosted.org/python-pushover
 
-Also, you will need Cryptsy API credentials and a running *coind for each
+Also, you will need exchange API credentials and a running *coind for each
 coin you want to consider mining.  Whether you mine solo or with a pool is
 up to you, but you'll need pool credentials (or *coind RPC credentials) in
 the pool configuration.  Multiple pools may be configured for a coin for
