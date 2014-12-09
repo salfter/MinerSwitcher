@@ -259,6 +259,7 @@ def main(argc, argv):
   # main loop
 
   last_coin={}
+  counts={}
   while (0==0):
 
     # check coin daemons
@@ -287,6 +288,10 @@ def main(argc, argv):
     algos={}
     for i, coin in enumerate(profit):
       algos[profit[coin]["algo"]]=profit[coin]["algo"]
+      try:
+        z=counts[profit[coin]["algo"]] # see if it exists
+      except:
+        counts[profit[coin]["algo"]]={} # create it if it doesn't
       try:
         z=last_coin[profit[coin]["algo"]] # see if it exists
       except:
@@ -325,9 +330,19 @@ def main(argc, argv):
           SwitchCoin(coin_max, algo, miners, pools, pushover_key)
           
         last_coin[algo]=coin_max
+        
+        try:
+          counts[algo][coin_max]+=1
+        except:
+          counts[algo][coin_max]=1
     
     # wait 30 minutes
     # check miners every other minute to make sure they're working
+
+    for i, algo in enumerate(counts):
+      print algo+":"
+      for j, coin in enumerate(counts[algo]):
+        print "  "+coin+": "+str(counts[algo][coin])
 
     print now()+": sleep for 30 minutes"
 
