@@ -346,7 +346,7 @@ def main(argc, argv):
 
     print now()+": sleep for 30 minutes"
 
-    for i in range(0,6):
+    for i in range(0, 6):
       time.sleep(300)
       down=CheckMiners(miners, accepted, rejected)
       if (len(down)>0):
@@ -360,6 +360,12 @@ def main(argc, argv):
           t=down[miner]
         except:
           pool_up[miner]=True
+
+    # log completed blocks: append a line
+    
+    for i, algo in enumerate(algos):
+      with open("log_"+last_coin[algo], "a") as log:
+        log.write("\n")
 
 main(len(sys.argv), sys.argv)
 
