@@ -3,7 +3,7 @@
 
 # MinerSwitcher.py: profitability-based mining farm switcher
 #
-# Copyright © 2014 Scott Alfter
+# Copyright © 2014-2015 Scott Alfter
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -300,41 +300,42 @@ def main(argc, argv):
     # loop on available algos
     
     for i, algo in enumerate(algos):
+      if (algo!="pos"):
   
-      # print profitability table, and find the most profitable coin
+        # print profitability table, and find the most profitable coin
 
-      tbl=MakeTable(algo, profit)
+        tbl=MakeTable(algo, profit)
     
-      # pick the most profitable for which the pools are up and running
+        # pick the most profitable for which the pools are up and running
 
-      running=False
-      for j, coin in enumerate(tbl):
-        print now()+": checking "+coin[0]+" pools"
-        if (CheckPools(coin[0], pools) and running==False):
-          running=True
-          coin_max=coin[0]
-          break
-        else:
+        running=False
+        for j, coin in enumerate(tbl):
+          print now()+": checking "+coin[0]+" pools"
+          if (CheckPools(coin[0], pools) and running==False):
+            running=True
+            coin_max=coin[0]
+            break
+          else:
+            if (pushover_key!=None):
+              SendNotification(pushover_key, coin[0]+" Pools Down", "None of the pools you have configured for "+coin[0]+" are responding.")
+            print now()+": all "+coin[0]+" pools down...skipping!"
+        if (running==False):
           if (pushover_key!=None):
-            SendNotification(pushover_key, coin[0]+" Pools Down", "None of the pools you have configured for "+coin[0]+" are responding.")
-          print now()+": all "+coin[0]+" pools down...skipping!"
-      if (running==False):
-        if (pushover_key!=None):
-          SendNotification(pushover_key, "ALL POOLS DOWN!!!", "None of your configured pools are responding.")
-        print now()+": ALL POOLS DOWN!!!"
-      else:
+            SendNotification(pushover_key, "ALL POOLS DOWN!!!", "None of your configured pools are responding.")
+          print now()+": ALL POOLS DOWN!!!"
+        else:
           
-        # do we need to switch?
+          # do we need to switch?
       
-        if (last_coin[algo]!=coin_max):
-          SwitchCoin(coin_max, algo, miners, pools, pushover_key)
-          
-        last_coin[algo]=coin_max
+          if (last_coin[algo]!=coin_max):
+            SwitchCoin(coin_max, algo, miners, pools, pushover_key)
+            
+          last_coin[algo]=coin_max
         
-        try:
-          counts[algo][coin_max]+=1
-        except:
-          counts[algo][coin_max]=1
+          try:
+            counts[algo][coin_max]+=1
+          except:
+            counts[algo][coin_max]=1
     
     # wait 30 minutes
     # check miners every other minute to make sure they're working
