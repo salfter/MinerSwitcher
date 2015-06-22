@@ -13,8 +13,8 @@
 -sys.path.insert(0, './PyCCEX/')
 +sys.path.insert(0, './ProfitLib/PyCCEX/')
  from PyCCEX import PyCCEX
--sys.path.insert(0, './PyCoinsE/')
-+sys.path.insert(0, './ProfitLib/PyCoinsE/')
- from PyCoinsE import PyCoinsE
+-sys.path.insert(0, './PyCryptopia/')
++sys.path.insert(0, './ProfitLib/PyCryptopia/')
+ from PyCryptopia import PyCryptopia
  
  class ProfitLib:

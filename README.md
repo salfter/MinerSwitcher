@@ -117,6 +117,10 @@ python-nmap
 python-pushover
   http://pythonhosted.org/python-pushover
 
+python-bitcoinrpc
+jsonrpc
+pycurl
+
 Also, you will need exchange API credentials and a running *coind for each
 coin you want to consider mining.  Whether you mine solo or with a pool is
 up to you, but you'll need pool credentials (or *coind RPC credentials) in
