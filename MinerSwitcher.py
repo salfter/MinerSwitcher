@@ -231,6 +231,11 @@ def main(argc, argv):
   except:
     pushover_key=None
 
+  # find algos supported by active miners
+  miner_algos={}
+  for i, miner in enumerate(miners):
+    miner_algos[miners[miner]["algo"]]=True
+
   # initialize accepted/rejected counters
 
   accepted={}
@@ -300,7 +305,7 @@ def main(argc, argv):
     # loop on available algos
     
     for i, algo in enumerate(algos):
-      if (algo!="pos"):
+      if (miner_algos.has_key(algo)):
   
         # print profitability table, and find the most profitable coin
 
