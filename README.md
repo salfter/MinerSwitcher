@@ -105,8 +105,8 @@ PyCryptsy (included as a submodule of ProfitLib):
 python-bittrex (included as a submodule of ProfitLib):
   https://github.com/ericsomdahl/python-bittrex
 
-PyCoinsE (included as a submodule of ProfitLib):
-  https://github.com/salfter/PyCoinsE
+PyCryptopia (included as a submodule of ProfitLib):
+  https://github.com/salfter/PyCryptopia
 
 PyCCEX (included as a submodule of ProfitLib):
   https://github.com/salfter/PyCCEX
@@ -118,8 +118,13 @@ python-pushover
   http://pythonhosted.org/python-pushover
 
 python-bitcoinrpc
+  https://github.com/jgarzik/python-bitcoinrpc
+
 jsonrpc
+  http://json-rpc.org/wiki/python-json-rpc
+
 pycurl
+  https://github.com/pycurl/pycurl
 
 Also, you will need exchange API credentials and a running *coind for each
 coin you want to consider mining.  Whether you mine solo or with a pool is
