@@ -40,6 +40,40 @@ hashrates will be populated with values calculated from the miner
 configuration (below).  If you don't want to check a particular exchange,
 remove its section from exchange_config.json.
 
+For multiple-algorithm coins, you can create multiple entries in
+daemon_config.json to evaluate suitability for whatever types of mining
+hardware you use.  Here's an example, using Digitalcoin for both SHA256 and
+scrypt...note the label with the algo after an underline:
+
+```
+  "DGC_sha256" : {
+    "username" : "salfter",
+    "passwd" : "rpc_password_goes_here",
+    "host" : "localhost",
+    "port" : 7998,
+    "active" : 1,
+    "hashespersec" : 580000000000,
+    "algo" : "sha256",
+    "merged" : [],
+    "daemonuser" : "digitalcoin",
+    "daemon" : "digitalcoind",
+    "client" : "digitalcoind"
+  },
+  "DGC_scrypt" : {
+    "username" : "salfter",
+    "passwd" : "rpc_password_goes_here",
+    "host" : "localhost",
+    "port" : 7998,
+    "active" : 1,
+    "hashespersec" : 8000000,
+    "algo" : "scrypt",
+    "merged" : [],
+    "daemonuser" : "digitalcoin",
+    "daemon" : "digitalcoind",
+    "client" : "digitalcoind"
+  }
+```
+
 The pool configuration needs to be copied from ./pool_config_example.json to
 ./pool_config.json and edited with the credentials for the pools you use.
 The priority field determines the order in which pools are fed to the miner;
