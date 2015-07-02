@@ -1,6 +1,6 @@
---- ProfitLib/ProfitLib.py~	2014-12-08 11:06:07.000000000 -0800
-+++ ProfitLib/ProfitLib.py	2014-12-08 11:06:57.703003040 -0800
-@@ -27,13 +27,13 @@
+--- ProfitLib/ProfitLib.py~	2015-07-02 09:59:28.000000000 -0700
++++ ProfitLib/ProfitLib.py	2015-07-02 10:01:24.871067847 -0700
+@@ -27,17 +27,17 @@
  import jsonrpc
  import sys
  from decimal import *
@@ -16,5 +16,11 @@
 -sys.path.insert(0, './PyCryptopia/')
 +sys.path.insert(0, './ProfitLib/PyCryptopia/')
  from PyCryptopia import PyCryptopia
+-sys.path.insert(0, "./poloniex/")
++sys.path.insert(0, "./ProfitLib/poloniex/")
+ from poloniex import poloniex
+-sys.path.insert(0, "./bleuBot/")
++sys.path.insert(0, "./ProfitLib/bleuBot/")
+ from bleuBot import bleuBot
  
  class ProfitLib:
