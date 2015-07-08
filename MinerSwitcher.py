@@ -368,8 +368,9 @@ def main(argc, argv):
     # log completed blocks: append a line
     
     for i, algo in enumerate(algos):
-      with open("log_"+last_coin[algo], "a") as log:
-        log.write("\n")
+      if (last_coin[algo]!=""):
+        with open("log_"+last_coin[algo], "a") as log:
+          log.write("\n")
 
 main(len(sys.argv), sys.argv)
 
