@@ -1,0 +1,23 @@
+{
+  "cryptsy" : {
+    "pubkey" : "CRYPTSY_API_PUBLIC_KEY",
+    "privkey" : "CRYPTSY_API_PRIVATE_KEY"
+  },
+  "bittrex" : {
+    "pubkey": "BITTREX_API_KEY",
+    "privkey" : "BITTREX_API_SECRET"
+  },
+  "c-cex": {
+    "key" : "C-CEX_API_KEY"
+  },
+  "cryptopia": {},
+  "poloniex": {
+    "key": "POLONIEX_API_KEY",
+    "secret": "POLONIEX_API_SECRET"
+  },
+  "bleutrade": {
+    "key": "BLEUTRADE_API_KEY",
+    "secret": "BLEUTRADE_API_SECRET"
+  }
+}
+

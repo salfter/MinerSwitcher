@@ -20,19 +20,8 @@ down or the pools for a coin aren't responding.
 Setup
 -----
 
-This project has nested submodules, and one submodule needs a path fix so
-it'll be included properly.  Use the following to fix everything up:
-
-```
-git submodule update --init --recursive
-patch -p0 <ProfitLib-path-fix.patch
-```
-
-For python-nmap and python-pushover, you can either use your distro's
-provided packages (if available) or you can use pip to fetch and install.
-
-The ProfitLib configuration files need to be copied from 
-./ProfitLib/*_config_example.json to ./*_config.json and edited 
+The configuration files need to be copied from
+./*_config_example.json to ./*_config.json and edited 
 appropriately.  In addition to exchange API credentials, you will 
 need RPC access to coin daemons for the coins you want to switch 
 between.  Setting hashrates in daemon_config.json is unnecessary; 
@@ -127,23 +116,11 @@ To put MinerSwitcher back in the background, press Ctrl-A Ctrl-D.
 Dependencies
 ------------
 
-ProfitLib (included as a submodule):
+ProfitLib:
   https://github.com/salfter/ProfitLib
 
-pycgminer (included as a submodule):
+pycgminer:
   https://github.com/tsileo/pycgminer
-
-PyCryptsy (included as a submodule of ProfitLib):
-  https://github.com/salfter/PyCryptsy    
-
-python-bittrex (included as a submodule of ProfitLib):
-  https://github.com/ericsomdahl/python-bittrex
-
-PyCryptopia (included as a submodule of ProfitLib):
-  https://github.com/salfter/PyCryptopia
-
-PyCCEX (included as a submodule of ProfitLib):
-  https://github.com/salfter/PyCCEX
 
 python-nmap
   http://xael.org/norman/python/python-nmap/

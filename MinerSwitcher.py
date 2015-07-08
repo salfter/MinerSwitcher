@@ -24,9 +24,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 import sys
-sys.path.insert(0, './ProfitLib/')
 from ProfitLib import ProfitLib
-sys.path.insert(0, './pycgminer/')
 from pycgminer import CgminerAPI
 import time
 import json
