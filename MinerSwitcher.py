@@ -182,7 +182,18 @@ def MakeTable(algo, profit):
 
   tbl=[]
   for i, r in enumerate(sorted_result):
-    tbl.append([r[0], Decimal(r[1])])
+    if (algo=="sha256"):
+      try:
+        tbl.append([r[0], Decimal(r[1]), (Decimal(r[1])/Decimal(result["BTC"])*100).quantize(Decimal("1.0"))])
+      except:
+        tbl.append([r[0], Decimal(r[1])])
+    elif (algo=="scrypt"):
+      try:
+        tbl.append([r[0], Decimal(r[1]), (Decimal(r[1])/Decimal(result["LTC"])*100).quantize(Decimal("1.0"))])
+      except:
+        tbl.append([r[0], Decimal(r[1])])
+    else:
+      tbl.append([r[0], Decimal(r[1])])
   print tabulate(tbl)
     
   return sorted_result
