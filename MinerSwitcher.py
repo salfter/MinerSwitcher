@@ -32,6 +32,7 @@ from decimal import *
 import operator
 import nmap
 from pushover import init, Client
+from tabulate import tabulate
 
 # check coin daemons
 
@@ -179,8 +180,10 @@ def MakeTable(algo, profit):
 
   sorted_result=sorted(result.items(), key=operator.itemgetter(1), reverse=True)
 
+  tbl=[]
   for i, r in enumerate(sorted_result):
-    print r[0]+" "+str(r[1])
+    tbl.append([r[0], Decimal(r[1])])
+  print tabulate(tbl)
     
   return sorted_result
 
@@ -344,9 +347,15 @@ def main(argc, argv):
     # check miners every other minute to make sure they're working
 
     for i, algo in enumerate(counts):
-      print algo+":"
+      tbl=[[],[]]
+      #print algo+":"
+      tbl[0].append(algo+":")
+      tbl[1].append("")
       for j, coin in enumerate(counts[algo]):
-        print "  "+coin+": "+str(counts[algo][coin])
+        #print "  "+coin+": "+str(counts[algo][coin])
+        tbl[0].append(coin)
+        tbl[1].append(counts[algo][coin])
+      print tabulate(tbl)
 
     print now()+": sleep for 30 minutes"
 
