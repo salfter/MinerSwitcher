@@ -24,11 +24,11 @@
 # DEALINGS IN THE SOFTWARE.
 
 import sys
-sys.path.insert(0, './pycgminer/')
 from pycgminer import CgminerAPI
 import json
 import operator
 import time
+import os
 
 # reconfigure a cgminer/bfgminer instance to mine on another pool
 # (by default, remove all other pools)
@@ -117,9 +117,18 @@ def main(argc, argv):
 
   # load config files
 
-  miners=json.loads(open("miner_config.json").read())
-  pools=json.loads(open("pool_config.json").read())
-  coins=json.loads(open("daemon_config.json").read())
+  miners=None
+  pools=None
+  coins=None
+  for loc in os.curdir, os.path.join(os.path.expanduser("~"), ".MinerSwitcher"), "/etc/MinerSwitcher":
+    try:
+      miners=json.loads(open(os.path.join(loc, "miner_config.json")).read())
+      pools=json.loads(open(os.path.join(loc, "pool_config.json")).read())
+      coins=json.loads(open(os.path.join(loc, "daemon_config.json")).read())
+    except IOError:
+      pass
+  if (miners==None or pools==None or coins==None):
+    raise FileNotFoundError("required config file(s) missing")
 
   SwitchCoin(argv[1], coins[argv[1]]["algo"], miners, pools)
 
