@@ -33,6 +33,7 @@ import operator
 import nmap
 from pushover import init, Client
 from tabulate import tabulate
+import os
 
 # check coin daemons
 
@@ -182,18 +183,7 @@ def MakeTable(algo, profit):
 
   tbl=[]
   for i, r in enumerate(sorted_result):
-    if (algo=="sha256"):
-      try:
-        tbl.append([r[0], Decimal(r[1]), (Decimal(r[1])/Decimal(result["BTC"])*100).quantize(Decimal("1.0"))])
-      except:
-        tbl.append([r[0], Decimal(r[1])])
-    elif (algo=="scrypt"):
-      try:
-        tbl.append([r[0], Decimal(r[1]), (Decimal(r[1])/Decimal(result["LTC"])*100).quantize(Decimal("1.0"))])
-      except:
-        tbl.append([r[0], Decimal(r[1])])
-    else:
-      tbl.append([r[0], Decimal(r[1])])
+    tbl.append([r[0], Decimal(r[1])])
   print tabulate(tbl)
     
   return sorted_result
@@ -234,14 +224,22 @@ def main(argc, argv):
 
   # load config files
 
-  exchanges=json.loads(open("exchange_config.json").read())
-  miners=json.loads(open("miner_config.json").read())
-  pools=json.loads(open("pool_config.json").read())
-  daemons=json.loads(open("daemon_config.json").read())
-  try:
-    pushover_key=json.loads(open("pushover_config.json").read())
-  except:
-    pushover_key=None
+  exchanges=None
+  miners=None
+  pools=None
+  daemons=None
+  pushover_key=None
+  for loc in os.curdir, os.path.join(os.path.expanduser("~"), ".MinerSwitcher"), "/etc/MinerSwitcher":
+    try:
+      exchanges=json.loads(open(os.path.join(loc, "exchange_config.json")).read())
+      miners=json.loads(open(os.path.join(loc, "miner_config.json")).read())
+      pools=json.loads(open(os.path.join(loc, "pool_config.json")).read())
+      daemons=json.loads(open(os.path.join(loc, "daemon_config.json")).read())
+      pushover_key=json.loads(open(os.path.join(loc, "pushover_config.json")).read())
+    except IOError:
+      pass
+  if (exchanges==None or miners==None or pools==None or daemons==None):
+    raise FileNotFoundError("required config file(s) missing")
 
   # find algos supported by active miners
   miner_algos={}
